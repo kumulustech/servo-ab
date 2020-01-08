@@ -12,7 +12,7 @@ import json
 from threading import Timer
 
 DESC="Apache Benchmark measure driver for Opsani Optune"
-VERSION="1.0.0"
+VERSION="1.0.1"
 HAS_CANCEL=True
 PROGRESS_INTERVAL=30
 
@@ -27,20 +27,19 @@ DFLT_LOAD_CFG = {
 }
 
 METRICS = {
-    #FIXME: name metric names good identifiers (no spaces/special chars)
-    'requests throughput': {
+    'requests_throughput': {
         'unit': 'requests/second',
     },
-    'time taken': {
+    'time_taken': {
         'unit': 'seconds',
     },
-    'number of errors': {
+    'number_of_errors': {
         'unit': 'count',
     },
-    'time per request (across all concurrent requests)': {
+    'time_per_request_all': {
         'unit': 'milliseconds',
     },
-    'time per request': {
+    'time_per_request': {
         'unit': 'milliseconds',
     },
 }
@@ -201,11 +200,11 @@ class AB(Measure):
             "Failed to parse Apache Benchmark output: time per req"
 
         result = {
-            'requests throughput': rps,
-            'time taken': time_taken,
-            'number of errors': n_errors,
-            'time per request (across all concurrent requests)':  t_reqs_all,
-            'time per request': t_reqs,
+            'requests_throughput': rps,
+            'time_taken': time_taken,
+            'number_of_errors': n_errors,
+            'time_per_request_all':  t_reqs_all,
+            'time_per_request': t_reqs,
         }
 
         command = ' '.join(cmd)
